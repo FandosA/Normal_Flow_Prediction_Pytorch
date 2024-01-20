@@ -52,3 +52,5 @@ $argmin$ $||n - \hat{n} ||_2^2$
 </p>
 
 The model takes as input two concatenated frames and outputs a matrix of two channels, the components of the normal flow of each pixel. That is, the dimensions of the input and output tensors are $(h,w,6)$ and $(h,w,2)$, respectively.
+
+## Dataset
