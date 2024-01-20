@@ -31,3 +31,8 @@ This equation represents the constraint line. For any point $(x,y)$ in the image
 <p align="center">
 <img src="https://github.com/FandosA/Normal_Flow_Prediction/assets/71872419/5142de5e-31dc-4567-85c4-926a8c145837" width="350" height="350">
 </p>
+
+Therefore, to compute the normal flow vector, it is necessary to calculate the unit vector perpendicular to the constraint line and its magnitude, which corresponds to the distance from the origin to the constraint line. The mathematical expressions of this components are:
+<p align="center">
+$\hat{u}_n = \frac{(I_x, I_y)}{\sqrt{I_x^2 + I_y^2}} \hspace{1cm} |\hat{u}_n| = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}}$
+</p>
