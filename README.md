@@ -10,10 +10,12 @@ where $u$ and $v$ represent the optical flow of the pixel $(x, y)$ (i.e., the mo
 <p align="center">
 $I(x,y,z)=I(x + \delta x, y + \delta y, t + \delta t)$
 </p>
+
 Approximating the right part of the previous equation with a first order Taylor expansion we obtain:
 <p align="center">
 $I(x,y,z)=I(x,y,z) + \frac{\partial I}{\partial x}\delta x + \frac{\partial I}{\partial y}\delta y + \frac{\partial I}{\partial t}\delta t$
 </p>
+
 And subtracting $I(x,y,t)$ from both sides of the equation, and then dividing it by $\delta t$:
 <p align="center">
 $0 = \frac{\partial I}{\partial x} \frac{\delta x}{\delta t} + \frac{\partial I}{\partial y} \frac{\delta y}{\delta t} + \frac{\partial I}{\partial t} \frac{\delta t}{\delta t} = I_x \frac{\partial x}{\partial t} + I_y \frac{\partial y}{\partial t} + I_t$
