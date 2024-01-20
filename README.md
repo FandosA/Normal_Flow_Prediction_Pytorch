@@ -28,4 +28,5 @@ $0 = I_x u + I_y v + I_t$
 </p>
 
 This equation represents the constraint line. For any point $(x,y)$ in the image, its optical flow $(u,v)$ lies on this line. In the following image, it can be seen an example of this line alongside an optical flow vector. As shown in the image, the optical flow vector (blue arrow) can be decomposed into two components: the normal flow (depicted by the red arrow) and the parallel flow (indicated by the green arrow).
-<img src="https://github.com/FandosA/Normal_Flow_Prediction/assets/71872419/5142de5e-31dc-4567-85c4-926a8c145837" width="500" height="500">
+
+<img src="https://github.com/FandosA/Normal_Flow_Prediction/assets/71872419/5142de5e-31dc-4567-85c4-926a8c145837" width="350" height="350">
