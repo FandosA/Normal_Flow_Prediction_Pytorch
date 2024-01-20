@@ -35,7 +35,5 @@ This equation represents the constraint line. For any point $(x,y)$ in the image
 Therefore, to compute the normal flow vector, it is necessary to calculate the unit vector perpendicular to the constraint line and its magnitude, which corresponds to the distance from the origin to the constraint line. The mathematical expressions of this components are:
 <p align="center">
 $\hat{u}_n = \frac{(I_x, I_y)}{\sqrt{I_x^2 + I_y^2}}$
-  
-  
   $|\hat{u}_n| = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}}$
 </p>
