@@ -12,7 +12,7 @@ $I(x,y,z)=I(x + \delta x, y + \delta y, t + \delta t)$
 
 Approximating the right part of the previous equation with a first order Taylor expansion we obtain:
 
-$I(x,y,z)=I(x,y,z) + \partial {4}{5}$
+$I(x,y,z)=I(x,y,z) + \frac{\partial I}{\partial y}$
 
 \begin{equation}
     I(x,y,t) + \frac{\partial I}{\partial x}\delta x + \frac{\partial I}{\partial y}\delta y + \frac{\partial I}{\partial t}\delta t
