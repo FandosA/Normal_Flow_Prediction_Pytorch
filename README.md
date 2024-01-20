@@ -6,4 +6,6 @@ The normal flow is the projection of the optical flow on the gradient directions
 
 $I(x,y,z)=I(x + u \delta t, y + v \delta t, t + \delta t)$
 
-where $u$ and $v$ represent the optical flow of the pixel $(x, y)$, i.e., the motion of the image pixel from time $t$ to $t+1$.
+where $u$ and $v$ represent the optical flow of the pixel $(x, y)$ (i.e., the motion of the image pixel from time $t$ to $t+1$). Thus, the equation can be rewritten as:
+
+$I(x,y,z)=I(x + \delta x, y + \delta y, t + \delta t)$
