@@ -40,3 +40,5 @@ $\hat{u}_n = \frac{(I_x, I_y)}{\sqrt{I_x^2 + I_y^2}}$
 $|\hat{u}_n| = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}}$
 </p>
 
+Obtaining $I_t$ from the equation, $-I_t = I_xu + I_yv$, the final normal flow vector can be calculated by combining the unit vector of the normal flow, its magnitude, and the value of $|I_t|$:
+$u_n = |\hat{u}_n| \hat{u}_n = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}} \cdot \frac{(I_x,I_y)}{\sqrt{I_x^2 + I_y^2}} = \frac{I_xu + I_yv}{I_x^2 + I_y^2} (I_x,I_y)$
