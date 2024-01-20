@@ -27,5 +27,6 @@ $0 = \frac{\partial I}{\partial x} \frac{\delta x}{\delta t} + \frac{\partial I}
 </p>
 
 Finally, keeping in mind that the optical flow $(u,v)$ represents the motion of the image pixel from time $t$ to $t+1$, this last equation can be rewritten as:
-
+<p align="center">
 $0 = I_x u + I_y v + I_t$
+</p>
