@@ -62,7 +62,9 @@ This will create a _json_ file like the one here in the repository with the path
 ```
 train.py
 ```
-and the model will start training. A folder like the one here called ``autoencoder`` will be created. The training checkpoints, as well as the loss values, will be saved here. At the end of the training, an image showing the loss curves will also be saved. You can check the folder in this repository to see what it looks like and the loss curves I have obtained. To test the model, organize the dataset the same way as before but using the ```dataset/test``` folder and run the test file
+and the model will start training. A folder like the one here called ``autoencoder`` will be created. The training checkpoints, as well as the loss values, will be saved here. At the end of the training, an image showing the loss curves will also be saved. You can check the folder in this repository to see what it looks like and the loss curves I have obtained.
+
+To test the model, organize the dataset the same way as before but using the ```dataset/test``` folder and run the test file
 ```
 test.py
 ```
