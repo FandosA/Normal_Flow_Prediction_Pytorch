@@ -4,4 +4,4 @@ This project consists of a deep learning model able to predict the normal flow b
 ## Normal Flow
 The normal flow is the projection of the optical flow on the gradient directions of the image and serves as a representation of image motion. To compute it, the [brightness constancy constraint](https://www.cs.toronto.edu/~fleet/research/Papers/flowChapter05.pdf) has applied. The brightness constancy constraint is one of the fundamental assumptions in optical flow computation and computer vision. It is based on the idea that, the intensity, or a function of the intensity, at a pixel remains constant over two consecutive frames. The mathematical expression of this constraint is:
 
-$I(x,y,z)=I(x + (_u_) \delta t)$
+$I(x,y,z)=I(x + _u_\delta t)$
