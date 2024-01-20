@@ -54,7 +54,7 @@ $argmin$ $||n - \hat{n} ||_2^2$
 The model takes as input two concatenated frames and outputs a matrix of two channels, the components of the normal flow of each pixel. That is, the dimensions of the input and output tensors are $(h,w,6)$ and $(h,w,2)$, respectively.
 
 ## Run the implementation
-As mention before, The dataset used to train the model has been [TartanAir dataset](https://theairlab.org/tartanair-dataset/). This dataset provides many image sequences of different scenarios created in Unreal Engine. At the same time they provide depth maps, optical flow, camera positions and orientations in each image and more. you need to visit their website, download the scenarios you want, and organize the images and their optical flow data the same way they are here in the ```dataset/``` folder in the repository. When the data is correctly organized, run the file
+As mention before, The dataset used to train the model has been [TartanAir dataset](https://theairlab.org/tartanair-dataset/). This dataset provides many image sequences of different scenarios created in Unreal Engine. At the same time they provide depth maps, optical flow, camera positions and orientations in each image and more. you need to visit their website, download the scenarios you want, and organize the images and their optical flow data the same way they are here in the ```dataset/train``` folder in the repository. When the data is correctly organized, run the file
 ```
 dataset.py
 ```
@@ -62,4 +62,7 @@ This will create a _json_ file like the one here in the repository with the path
 ```
 train.py
 ```
-and the model will start training. A folder like the one here called ``autoencoder`` will be created. The training checkpoints, as well as the loss values, will be saved here. At the end of the training, an image showing the loss curves will also be saved. You can check the folder in this repository to see what it looks like and the loss curves I have obtained.
+and the model will start training. A folder like the one here called ``autoencoder`` will be created. The training checkpoints, as well as the loss values, will be saved here. At the end of the training, an image showing the loss curves will also be saved. You can check the folder in this repository to see what it looks like and the loss curves I have obtained. To test the model, organize the dataset the same way as before but using the ```dataset/test``` folder and run the test file
+```
+test.py
+```
