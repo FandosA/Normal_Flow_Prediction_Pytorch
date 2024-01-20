@@ -72,4 +72,4 @@ You only have to enter the name of the checkpoint you want to use. In my case, I
 ```
 python test.py --checkpoint=checkpoint_395_best.pth
 ```
-because that's the name of the checkpoint where the loss value was the lowest.
+because that's the name of the checkpoint where the loss value was the lowest in my training.
