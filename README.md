@@ -12,4 +12,8 @@ $I(x,y,z)=I(x + \delta x, y + \delta y, t + \delta t)$
 
 Approximating the right part of the previous equation with a first order Taylor expansion we obtain:
 
-$I(x,y,z)=I(x,y,z) + \frac{\partial I}{\partial x}\delta x + \frac{\partial I}{\partial y}\delta y + \frac{\partial I}{\partial t}\delta t \arrow$
+$I(x,y,z)=I(x,y,z) + \frac{\partial I}{\partial x}\delta x + \frac{\partial I}{\partial y}\delta y + \frac{\partial I}{\partial t}\delta t$
+
+And subtracting $I(x,y,t)$ from both sides of the equation:
+
+$0 = \frac{\partial I}{\partial x}\delta x + \frac{\partial I}{\partial y}\delta y + \frac{\partial I}{\partial t}\delta t$
