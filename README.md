@@ -46,11 +46,12 @@ $u_n = |\hat{u}_n| \hat{u}_n = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}} \cdot \frac{(I
 </p>
 
 ## Autoencoder
-The deep learning model chosen to predict the normal flow between two cosnecutive frames has been an autoencoder. This autoencoder is based on [EVPropNet](https://prg.cs.umd.edu/EVPropNet), which at the same time is based on [ResNet](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf). The encoder contains residual blocks with convolutional layers and the decoder contains residual blocks with transpose convolutional layers. The gradients are backpropagated using a mean squared loss computed between groundtruth and predicted normal flow:
+The deep learning model chosen to predict the normal flow between two consecutive frames has been an autoencoder. This autoencoder is based on [EVPropNet](https://prg.cs.umd.edu/EVPropNet), which in turn is based on [ResNet](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf). The encoder contains residual blocks with convolutional layers and the decoder contains residual blocks with transpose convolutional layers. The gradients are backpropagated using a mean squared loss computed between groundtruth and predicted normal flow:
 <p align="center">
 $argmin$ $||n - \hat{n} ||_2^2$
 </p>
 
 The model takes as input two concatenated frames and outputs a matrix of two channels, the components of the normal flow of each pixel. That is, the dimensions of the input and output tensors are $(h,w,6)$ and $(h,w,2)$, respectively.
 
-## Dataset
+## Run the implementation
+As mention before, The dataset used to train the model has been [TartanAir dataset](https://theairlab.org/tartanair-dataset/). This dataset provides many image sequences of different scenarios created in Unreal Engine. At the same time they provide depth maps, optical flow, camera positions and orientations in each image and more. If you want to train your own model using this dataset, you should visit their website, download the scenarios you want, and organize the images and their optical flow data the same way they are here in the folder ```dataset/``` in the repository.
