@@ -44,3 +44,9 @@ Obtaining $I_t$ from the equation, $-I_t = I_xu + I_yv$, the final normal flow v
 <p align="center">
 $u_n = |\hat{u}_n| \hat{u}_n = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}} \cdot \frac{(I_x,I_y)}{\sqrt{I_x^2 + I_y^2}} = \frac{I_xu + I_yv}{I_x^2 + I_y^2} (I_x,I_y)$
 </p>
+
+## Autoencoder
+The deep learning model chosen to predict the normal flow between two cosnecutive frames has been an autoencoder. This autoencoder is based on [EVPropNet](https://prg.cs.umd.edu/EVPropNet), which at the same time is based on [ResNet](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf). The encoder contains residual blocks with convolutional layers and the decoder contains residual blocks with transpose convolutional layers. The gradients are backpropagated using a mean squared loss computed between groundtruth and predicted normal flow:
+<p align="center">
+$argmin(||n - \hat{n} ||_2^2)$
+</p>
