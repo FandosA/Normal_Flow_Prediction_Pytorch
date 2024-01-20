@@ -26,3 +26,6 @@ And subtracting $I(x,y,t)$ from both sides of the equation, and then dividing it
 $0 = \frac{\partial I}{\partial x} \frac{\delta x}{\delta t} + \frac{\partial I}{\partial y} \frac{\delta y}{\delta t} + \frac{\partial I}{\partial t} \frac{\delta t}{\delta t} = I_x \frac{\partial x}{\partial t} + I_y \frac{\partial y}{\partial t} + I_t$
 </p>
 
+Finally, keeping in mind that the optical flow $(u,v)$ represents the motion of the image pixel from time $t$ to $t+1$, this last equation can be rewritten as:
+
+$0 = I_x u + I_y v + I_t$
