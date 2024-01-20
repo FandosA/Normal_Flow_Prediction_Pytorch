@@ -20,7 +20,7 @@ Approximating the right part of the previous equation with a first order Taylor 
 $I(x,y,z)=I(x,y,z) + \frac{\partial I}{\partial x}\delta x + \frac{\partial I}{\partial y}\delta y + \frac{\partial I}{\partial t}\delta t$
 </p>
 
-And subtracting $I(x,y,t)$ from both sides of the equation:
+And subtracting $I(x,y,t)$ from both sides of the equation, and dividing it by $\delta t$:
 
 <p align="center">
 $0 = \frac{\partial I}{\partial x}\delta x + \frac{\partial I}{\partial y}\delta y + \frac{\partial I}{\partial t}\delta t$
