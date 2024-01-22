@@ -73,3 +73,8 @@ You only have to enter the name of the checkpoint you want to use. In my case, I
 python test.py --checkpoint=checkpoint_395_best.pth
 ```
 because that's the name of the checkpoint where the loss value was the lowest in my training.
+
+## Results
+In the following video you can see the results obtained using the _hospital_ scenario of the data set. The video shows 4 screens: the top left screen is the original image, the top right screen is the optical flow, the bottom left screen is the ground truth normal flow and the bottom right screen is the predicted normal flow.
+
+https://www.youtube.com/watch?v=17LuuflLbSo
