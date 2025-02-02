@@ -39,5 +39,5 @@ if __name__ == "__main__":
             data_autoencoder["optical_flow"].append(os.path.join(optical_flow_path, flow_files[2 * i]))
     
     # Save data in json file
-    with open("dataset_paths.json", "w") as fp:
+    with open("dataset_autoencoder.json", "w") as fp:
         json.dump(data_autoencoder, fp, indent=4)
