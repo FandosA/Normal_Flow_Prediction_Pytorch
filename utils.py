@@ -11,7 +11,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def computeImageGradients(image, rgb_img):
+def computeImageGradients(image):
     """
     Computes the image gradients. If the image is RGB the size is (H,W,3),
     otherwise if the image is grayscale the size is (H,W)
@@ -19,7 +19,7 @@ def computeImageGradients(image, rgb_img):
     :param rgb_img: bool to indicate whether the image is in RGB or grayscale
     :return: image gradients, with values of type uint8 (0-255)
     """
-    if rgb_img:
+    if image.shape[-1] == 3:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     sobel_x = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=3)
@@ -31,7 +31,7 @@ def computeImageGradients(image, rgb_img):
     return grad_x, grad_y
 
 
-def computeNormalFlow(image, optical_flow, rgb_img):
+def computeNormalFlow(image, optical_flow):
     """
     Computes the normal flow from optical flow. If the image is RGB the size is
     (H,W,3), otherwise the image is grayscale and its size is (H,W)
@@ -40,7 +40,7 @@ def computeNormalFlow(image, optical_flow, rgb_img):
     :param rgb_img: bool to indicate whether the image is in RGB or grayscale
     :return: normal flow. Size is (H,W,2)
     """
-    Ix, Iy = computeImageGradients(image, rgb_img)
+    Ix, Iy = computeImageGradients(image)
     Ix = np.float64(Ix)
     Iy = np.float64(Iy)
     
