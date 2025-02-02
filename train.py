@@ -42,8 +42,8 @@ class Dataset(Dataset):
         frame = cv2.imread(self.data["frame"][index])
         
         # Load optical flow and compute grouned truth normal flow
-        optical_flow = np.load(self.data["flow"][index])
-        normalFlow = utils.computeNormalFlow(frame_ant, optical_flow, True)
+        optical_flow = np.load(self.data["optical_flow"][index])
+        normalFlow = utils.computeNormalFlow(frame_ant, optical_flow)
         
         # Convert arrays from numpy to torch tensors and send them to de device assigned
         frame_ant = self.transformer(frame_ant).float().to(device)
@@ -54,7 +54,7 @@ class Dataset(Dataset):
     
 
 
-def train(num_epochs, log_dir):
+def train():
     
     min_val_loss = np.inf
     bestEpoch = 0
@@ -66,7 +66,7 @@ def train(num_epochs, log_dir):
     print('--------------------------------------------------------------')
     
     # Loop along epochs to do the training
-    for i in range(num_epochs + 1):
+    for i in range(args.epochs + 1):
         
         print(f'EPOCH {i}')
         
@@ -79,7 +79,7 @@ def train(num_epochs, log_dir):
         
         for frame_ant, frame, normal_flow in train_loader:
             
-            print('\rEpoch[' + str(i) + '/' + str(num_epochs) + ']: ' + 'iteration ' + str(iteration) + '/' + str(len(train_loader)), end='')
+            print('\rEpoch[' + str(i) + '/' + str(args.epochs) + ']: ' + 'iteration ' + str(iteration) + '/' + str(len(train_loader)), end='')
             iteration += 1
             
             frame_ant, frame, normal_flow = frame_ant.to(device), frame.to(device), normal_flow.to(device)
@@ -105,7 +105,7 @@ def train(num_epochs, log_dir):
         
         for frame_ant, frame, normal_flow in validate_loader:
             
-            print('\rEpoch[' + str(i) + '/' + str(num_epochs) + ']: ' + 'iteration ' + str(iteration) + '/' + str(len(validate_loader)), end='')
+            print('\rEpoch[' + str(i) + '/' + str(args.epochs) + ']: ' + 'iteration ' + str(iteration) + '/' + str(len(validate_loader)), end='')
             iteration += 1
             
             frame_ant, frame, normal_flow = frame_ant.to(device), frame.to(device), normal_flow.to(device)
@@ -145,12 +145,12 @@ def train(num_epochs, log_dir):
             min_val_loss = val_loss / len(validate_loader)
             bestEpoch = i
             
-        saveLossValues(log_dir, np.array(train_losses), np.array(val_losses))
+        saveLossValues(args.log_dir, np.array(train_losses), np.array(val_losses))
             
         print("--------------------------------------------------------------")
     
     # Plot loss and accuracy curves
-    plotLoss(log_dir, np.array(train_losses), np.array(val_losses))
+    plotLoss(args.log_dir, np.array(train_losses), np.array(val_losses))
 
 
 
@@ -160,48 +160,48 @@ if __name__ == "__main__":
     p = configargparse.ArgumentParser()
     p.add_argument('--dataset_file_path', type=str, default='dataset_autoencoder.json', help='Path to the dataset file.')
     p.add_argument('--train_split', type=float, default=0.9, help='Percentage of the dataset to be used for training.')
-    p.add_argument('--log_dir', type=str, default='autoencoder', help='Name of the folder to save the model.')
+    p.add_argument('--log_dir', type=str, default='polla', help='Name of the folder to save the model.')
     p.add_argument('--batch_size', type=int, default=8, help='Batch size.')
     p.add_argument('--learning_rate', type=float, default=1e-4, help='Learning rate.')
     p.add_argument('--epochs', type=int, default=400, help='Number of epochs.')
     p.add_argument('--GPU', type=bool, default=True, help='True to train the model in the GPU')
-    opt = p.parse_args()
+    args = p.parse_args()
     
-    assert not (os.path.isdir(opt.log_dir)), 'The folder log_dir already exists, remove it or change it'
-    assert (opt.train_split < 1.0), 'The percentage of the dataset to be used for training must be less than 1'
+    assert not (os.path.isdir(args.log_dir)), 'The folder log_dir already exists, remove it or change it'
+    assert (args.train_split < 1.0), 'The percentage of the dataset to be used for training must be less than 1'
     
     # Select device
-    if opt.GPU and torch.cuda.is_available():
+    if args.GPU and torch.cuda.is_available():
         device = torch.device("cuda:0")
         print('Device assigned: GPU (' + torch.cuda.get_device_name(device) + ')\n')
     else:
         device = torch.device("cpu")
-        if not torch.cuda.is_available() and opt.GPU:
+        if not torch.cuda.is_available() and args.GPU:
             print('GPU not available, device assigned: CPU\n')
         else:
             print('Device assigned: CPU\n')
             
     # Load datasets and create dataloaders
-    dataset = Dataset(opt.dataset_file_path, device)
+    dataset = Dataset(args.dataset_file_path, device)
     
     total_len_dataset = len(dataset)
-    len_training = int(total_len_dataset * opt.train_split)
+    len_training = int(total_len_dataset * args.train_split)
     len_validation = total_len_dataset - len_training
     
     train_dataset, validate_dataset = torch.utils.data.random_split(dataset, [len_training,  len_validation])
     
-    train_loader = DataLoader(dataset=train_dataset, batch_size=opt.batch_size, shuffle=True)
-    validate_loader = DataLoader(dataset=validate_dataset, batch_size=opt.batch_size, shuffle=True)
+    train_loader = DataLoader(dataset=train_dataset, batch_size=args.batch_size, shuffle=True)
+    validate_loader = DataLoader(dataset=validate_dataset, batch_size=args.batch_size, shuffle=True)
     
     print('Normal flows used to train: ' + str(len(train_dataset)) + '/' + str(len(dataset)))
     print('Normal flows used to validate: ' + str(len(validate_dataset)) + '/' + str(len(dataset)) + '\n')
     
     model = AutoEncoder().to(device)
-    optimiser = torch.optim.Adam(model.parameters(), lr=opt.learning_rate, weight_decay=1e-4)
+    optimiser = torch.optim.Adam(model.parameters(), lr=args.learning_rate, weight_decay=1e-4)
     loss_fn = nn.MSELoss()
     
     saveLossValues = utils.saveLossValues
     plotLoss = utils.plotLoss
-    checkpoints_path = utils.createModelFolder(opt.log_dir)
+    checkpoints_path = utils.createModelFolder(args.log_dir)
     
-    train(opt.epochs, opt.log_dir)
+    train()
