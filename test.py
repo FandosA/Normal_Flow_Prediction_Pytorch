@@ -21,7 +21,7 @@ def loadImageAndNormalFlow(idx, path2image, path2image_next, path2flow):
     frame = cv2.imread(path2image_next)
     
     optical_flow = np.load(path2flow)        
-    normalFlow = utils.computeNormalFlow(frame_ant_numpy, optical_flow, True)
+    normalFlow = utils.computeNormalFlow(frame_ant_numpy, optical_flow)
     
     frame_ant = transformer(frame_ant_numpy).float().to(device)
     frame = transformer(frame).float().to(device)
